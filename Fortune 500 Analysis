@@ -94,3 +94,14 @@ CASE
  FROM fortune_companies
  WHERE paid_time_off_days>=20
  ORDER BY family_friendliness DESC;
+
+--Assign all companies that have healthcare benefits as "positive culture","acceptable", or "questionable culture" based on the average employee tenure. 
+SELECT company_name,industry,
+CASE 
+	WHEN avg_employee_tenure>=6.5 THEN "Positive Culture"
+    WHEN avg_employee_tenure>=3.5 THEN "Acceptable"
+ 	ELSE "Questionable Culture"
+ END AS company_culture
+ FROM fortune_companies
+ WHERE healthcare_benefits=1
+ ORDER BY company_culture DESC; 
